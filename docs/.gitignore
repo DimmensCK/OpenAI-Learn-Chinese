@@ -1,0 +1,17 @@
+# Local reading exports, evidence and build outputs do not belong in source.
+learn-reading*.json
+*阅读记录*.json
+node_modules/
+__pycache__/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+*.log
+*.zip
+*.psd
+*.psb
+.vscode/
+.idea/
+dist/
+Evidence/

@@ -14,7 +14,7 @@
 
 如你是权利人并希望更正来源、限制或移除具体内容，请通过 [GitHub Issues](https://github.com/DimmensCK/OpenAI-Learn-Chinese/issues) 提供公开可分享的文章链接和说明；不要提交身份证件、私人联系方式、密钥或其他敏感文件。维护者将核实并处理。
 
-参考：[OpenAI Learn](https://learn.chatgpt.com) · [OpenAI Terms of Use](https://openai.com/policies/terms-of-use/) · [包内来源说明](学习资料/来源与权利说明.md)。这些链接不是本项目获得授权的声明。
+参考：[OpenAI Learn](https://learn.chatgpt.com) · [OpenAI Terms of Use](https://openai.com/policies/terms-of-use/) · [包内来源说明](../../学习资料/来源与权利说明.md)。这些链接不是本项目获得授权的声明。
 
 ## English
 

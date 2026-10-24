@@ -8,6 +8,3 @@
 *.cmd text eol=crlf
 *.jpg binary
 *.png binary
-# Preserve the supplied offline bundle byte-for-byte (including line endings).
-学习资料/** -text
-开始学习.cmd -text

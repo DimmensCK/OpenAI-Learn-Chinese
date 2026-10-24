@@ -1,0 +1,2 @@
+# Preserve the supplied offline files exactly, including existing line endings.
+* -text

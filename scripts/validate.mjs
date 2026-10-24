@@ -2,6 +2,7 @@
 // Run with Node.js 22+: node scripts/validate.mjs [--root <package-directory>]
 // Update this baseline deliberately when publishing a new content snapshot.
 import { lstat, readFile, readdir, realpath } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -11,6 +12,7 @@ const BASELINE = Object.freeze({
   availableArticles: 322,
   unavailableArticles: 9,
   glossaryTerms: 325,
+  launcherSha256: '05c6191138287f4462f512197a09f14dd9347131ca7053f0e54f9bdbdde359a7',
 });
 const DATA = '学习资料';
 const MAX_FILE_BYTES = 32 * 1024 * 1024;
@@ -128,6 +130,11 @@ async function validate(rootArgument) {
   try { root = await realpath(rootArgument); }
   catch (error) { throw new Error(`package root is unavailable (${error.code || 'IO_ERROR'})`); }
 
+  const rootEntries = await readdir(root, { withFileTypes: true });
+  const rootFiles = rootEntries.filter(entry => entry.isFile()).map(entry => entry.name).sort();
+  requireValue(rootFiles.length === 1 && rootFiles[0] === '开始学习.cmd', 'package root must contain only 开始学习.cmd as a regular file; put documentation and maintenance files in subdirectories');
+  requireValue(rootEntries.every(entry => entry.isFile() || entry.isDirectory()), 'package root must not contain symbolic links or special entries');
+
   async function checkedPath(relative, kind = 'file') {
     requireValue(typeof relative === 'string' && relative.length > 0, 'empty package path');
     requireValue(!path.isAbsolute(relative) && !/[\\:\0]/u.test(relative), `invalid package path: ${relative}`);
@@ -163,6 +170,11 @@ async function validate(rootArgument) {
   for (const relative of required) await checkedPath(relative);
   const launcher = await textFile('开始学习.cmd');
   requireValue(launcher.includes('set "LEARN_ENTRY=%~dp0学习资料\\index.html"') && launcher.includes('start "" "%LEARN_ENTRY%"'), 'launcher must open the relative learning entry');
+  let launcherBytes;
+  try { launcherBytes = await readFile((await checkedPath('开始学习.cmd')).absolute); }
+  catch { throw new Error('cannot read launcher bytes for SHA-256 validation'); }
+  const launcherSha256 = createHash('sha256').update(launcherBytes).digest('hex');
+  requireValue(launcherSha256 === BASELINE.launcherSha256, '开始学习.cmd SHA-256 differs from the supplied launcher; restore its original bytes, including line endings. The validator does not normalize files.');
 
   const catalog = readCatalog(await textFile(`${DATA}/catalog.js`), `${DATA}/catalog.js`);
   requireValue(isObject(catalog.meta), 'catalog.meta must be an object');
@@ -260,10 +272,12 @@ async function validate(rootArgument) {
 
   return {
     ok: true,
+    rootFiles,
+    launcherSha256,
     baseline: BASELINE,
     counts: { ...counts, bilingualArticles: counts.availableArticles, payloadFiles: counts.availableArticles + counts.glossaryTerms },
     relativeEntryResources: [...resources].sort(),
-    checks: ['fixed-data-syntax', 'unique-ids', 'https-learn-article-sources', 'catalog-payload-set', 'bilingual-articles', 'glossary-references', 'contained-paths', 'relative-entry-resources'],
+    checks: ['root-layout', 'launcher-exact-bytes', 'fixed-data-syntax', 'unique-ids', 'https-learn-article-sources', 'catalog-payload-set', 'bilingual-articles', 'glossary-references', 'contained-paths', 'relative-entry-resources'],
   };
 }
 
