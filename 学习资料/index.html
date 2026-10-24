@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn 非官方中文学习库。离线阅读、搜索、词汇解释与阅读进度。">
+  <meta name="color-scheme" content="light dark">
+  <title>Learn 中文学习库 · V6</title>
+  <link rel="stylesheet" href="app.css?v=v6-b2f3c99231fd">
+  <script defer src="catalog.js?v=v6-b2f3c99231fd"></script>
+  <script defer src="app.js?v=v6-b2f3c99231fd"></script>
+<link rel="icon" href="data:,">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="#/" aria-label="Learn 中文学习库首页"><span class="brand-word">Learn<span class="brand-dot">.</span></span><span class="brand-description">中文学习库</span><span class="version">V6</span></a>
+    <div class="header-actions"><button id="search-open" class="search-trigger" type="button" aria-label="搜索文档与词汇"><span aria-hidden="true">⌕</span><span>搜索文档与词汇</span><kbd>Ctrl K</kbd></button><button id="theme-toggle" class="icon-button" type="button" aria-label="切换深色模式" title="切换深色模式">◐</button></div>
+  </header>
+  <nav class="top-nav" aria-label="主要导航"><div class="nav-links"><a href="#/" data-nav="home">首页</a><a href="#/docs" data-nav="docs">文档</a><a href="#/glossary" data-nav="glossary">词汇表</a><a href="#/progress" data-nav="progress">阅读记录<span id="nav-read-count" class="count-badge">0</span></a><a href="#/help" data-nav="help">使用帮助</a></div><span class="offline-indicator"><i></i>离线学习 · 非官方译本</span></nav>
+  <div id="storage-warning" class="storage-warning" role="status" hidden></div>
+  <main id="main" tabindex="-1"><div class="loading">正在打开学习库…</div></main>
+  <footer class="site-footer"><span>Learn 中文学习库 · V6</span><span>内容来源 OpenAI · 非官方中文译本</span><a href="#/help">关于与使用说明 ↗</a></footer>
+  <dialog id="search-dialog" class="search-dialog"><div class="search-dialog-head"><label class="sr-only" for="search-input">搜索文档与词汇</label><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="搜索标题、正文、英文术语…" autocomplete="off"><button id="search-close" class="icon-button" aria-label="关闭搜索" type="button">×</button></div><div class="search-hint">输入关键词，搜索全部文档与词汇。按 Esc 关闭。</div><div id="search-results" class="search-results" aria-live="polite"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript><p class="error-box">此学习库需要浏览器启用 JavaScript。请使用较新的 Edge、Chrome 或 Firefox 打开。</p></noscript>
+</body>
+</html>
