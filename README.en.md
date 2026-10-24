@@ -50,7 +50,7 @@ The hosted reader is convenient on mobile. These are real captures of **hosted V
 
 ## Get started in three steps
 
-1. Open [Releases](https://github.com/DimmensCK/OpenAI-Learn-Chinese/releases/latest) and download **Learn-Chinese-v6.0.0.zip**.
+1. Open [Releases](https://github.com/DimmensCK/OpenAI-Learn-Chinese/releases/latest) and download **Source code (zip)** under **Assets**. It contains the complete library and reader.
 2. **Extract the entire ZIP** into a normal folder. Keep `开始学习.cmd` beside the `学习资料` folder.
 3. On Windows, double-click **开始学习.cmd**. On macOS or Linux, or if you prefer to skip the launcher, open **学习资料/index.html** in your browser.
 
