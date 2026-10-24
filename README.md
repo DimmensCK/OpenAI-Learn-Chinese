@@ -52,7 +52,7 @@
 
 ## 三步开始
 
-1. 打开 [Releases 下载页](https://github.com/DimmensCK/OpenAI-Learn-Chinese/releases/latest)，下载 **Learn-Chinese-v6.0.0.zip**。
+1. 打开 [Releases 下载页](https://github.com/DimmensCK/OpenAI-Learn-Chinese/releases/latest)，在 **Assets（资源）** 中下载 **Source code (zip)**。它包含完整学习库和阅读器。
 2. **完整解压**到任意普通文件夹，保留“开始学习.cmd”和“学习资料”文件夹的相对位置。
 3. Windows 双击 **开始学习.cmd**。macOS、Linux，或不使用启动器时，直接用浏览器打开 **学习资料/index.html**。
 
